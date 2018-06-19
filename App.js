@@ -5,8 +5,9 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View, StatusBar } from 'react-native';
 import Button from './Button';
+import ModeSwitch from './ModeSwitch';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -16,20 +17,38 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
   state = {
-    count: 0
+    count: 0,
+    nightMode: false
   };
 
   count = () => {
     this.setState({ count: this.state.count + 1 });
   };
 
+  onSwitchChange = val => {
+    this.setState({ nightMode: val });
+  };
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to Economist presentation!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{this.state.count}</Text>
+      <View
+        style={[styles.container, { backgroundColor: this.state.nightMode ? 'black' : '#F5FCFF' }]}
+      >
+        <StatusBar
+          backgroundColor={this.state.nightMode ? 'black' : 'white'}
+          barStyle={this.state.nightMode ? 'light-content' : 'dark-content'}
+        />
+        <Text style={[styles.welcome, { color: this.state.nightMode ? 'yellow' : 'blue' }]}>
+          Welcome to Economist presentation!
+        </Text>
+        <Text style={[styles.instructions, { color: this.state.nightMode ? 'white' : 'black' }]}>
+          To get started, edit App.js
+        </Text>
+        <Text style={[styles.instructions, { color: this.state.nightMode ? 'white' : 'black' }]}>
+          {this.state.count}
+        </Text>
         <Button label="Counter" backgroundColor="yellow" onPress={this.count} />
+        <ModeSwitch onValueChange={this.onSwitchChange} value={this.state.nightMode} />
         <View style={styles.authorContainer}>
           <Text style={[styles.instructions, styles.author]}>My name is Tomas Paronai</Text>
         </View>
