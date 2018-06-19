@@ -17,9 +17,12 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
+        <Text style={styles.welcome}>Welcome to Economist presentation!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
+        <View style={styles.authorContainer}>
+          <Text style={[styles.instructions, styles.author]}>My name is Tomas Paronai</Text>
+        </View>
       </View>
     );
   }
@@ -43,5 +46,15 @@ const styles = StyleSheet.create({
     color: 'black',
     marginTop: 15,
     marginBottom: 5
+  },
+  authorContainer: {
+    position: 'absolute',
+    bottom: 20,
+    left: 0,
+    right: 0,
+    backgroundColor: 'red'
+  },
+  author: {
+    fontSize: 16
   }
 });
