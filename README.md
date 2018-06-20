@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'yellow',
     padding: 10
   },
   labelStyle: {
